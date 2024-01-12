@@ -1,0 +1,24 @@
+{
+  "name": "mini-vite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "node prebuild.js",
+    "start": "npm run prebuild && node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "connect": "^3.7.0",
+    "es-module-lexer": "^1.4.1",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.11"
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vite-like HMR Example</title>
+
+    <script type="module">
+      const socket = new WebSocket(`ws://${location.host}`);
+
+      socket.addEventListener("message", async ({ data }) => {
+        console.log("data", data);
+        const message = JSON.parse(data);
+        if (message.type === "update") {
+          console.log(`Updating module: ${message.path}`);
+          await import(
+            /* webpackIgnore: true */ `/${
+              message.path
+            }?t=${new Date().getTime()}`
+          );
+          console.log(`Module updated: ${message.path}`);
+        }
+      });
+
+      import("./main.js").catch(console.error);
+    </script>
+  </head>
+  <body>
+    <h1>Hello, Vite-like HMR!</h1>
+    <div id="app"></div>
+  </body>
+</html>
